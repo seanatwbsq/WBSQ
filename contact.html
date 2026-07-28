@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WBSQ Holdings — Contact Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#000000; --paper:#E7E4DA; --paper-hi:#F3F1E9;
+    --brass:#A9814A; --rust:#A2422A; --steel:#5C7480;
+    --line: rgba(16,31,43,0.14); --line-on-ink: rgba(231,228,218,0.16);
+    --display:'Fraunces',serif; --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--brass); outline-offset:3px;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  header.nav{position:sticky; top:0; z-index:50; background:var(--ink); border-bottom:1px solid var(--line-on-ink);}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px;}
+  .logo{font-family:var(--mono); color:var(--paper-hi); letter-spacing:0.14em; font-size:14px; font-weight:600; text-decoration:none; display:flex; align-items:center; gap:8px;}
+  .logo-img{height:28px; width:auto; display:block;}
+
+  .logo .dot{width:6px; height:6px; background:var(--rust); display:inline-block; border-radius:1px;}
+  nav.links{display:flex; gap:36px;}
+  nav.links a{color:rgba(231,228,218,0.72); text-decoration:none; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; font-weight:500; position:relative; padding-bottom:4px;}
+  nav.links a.current{color:var(--paper-hi);}
+  nav.links a::after{content:''; position:absolute; left:0; bottom:0; height:1px; width:0; background:var(--brass); transition:width 0.25s ease;}
+  nav.links a:hover::after{width:100%;}
+  @media (max-width:800px){ nav.links{display:none;} }
+
+  .page-hero{background:var(--ink); color:var(--paper-hi); padding:80px 0 56px;}
+  .meta-row{font-family:var(--mono); font-size:12px; letter-spacing:0.12em; color:var(--brass); text-transform:uppercase; margin-bottom:20px;}
+  h1.page-title{font-family:var(--display); font-weight:600; font-size:clamp(34px,5vw,56px); margin:0 0 20px; max-width:16ch; letter-spacing:-0.01em;}
+  p.page-sub{font-size:16px; line-height:1.65; max-width:56ch; color:rgba(231,228,218,0.8); margin:0;}
+
+  .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--rust); display:flex; align-items:center; gap:10px; margin-bottom:18px;}
+  .eyebrow .ln{width:28px; height:1px; background:var(--rust); display:inline-block;}
+
+  /* MAIN CONTACT GRID */
+  .contact-main{padding:80px 0 96px;}
+  .cm-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px;}
+  @media (max-width:860px){ .cm-grid{grid-template-columns:1fr; gap:48px;} }
+
+  /* FORM */
+  .field{margin-bottom:22px;}
+  .field label{display:block; font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--steel); margin-bottom:8px;}
+  .field input, .field select, .field textarea{
+    width:100%; border:none; border-bottom:1px solid var(--ink); background:transparent;
+    font-family:var(--sans); font-size:15px; color:var(--ink); padding:10px 2px; font-weight:500;
+  }
+  .field textarea{resize:vertical; min-height:100px; font-weight:400;}
+  .field input:focus, .field select:focus, .field textarea:focus{outline:none; border-bottom:2px solid var(--brass);}
+  .row-2{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:480px){ .row-2{grid-template-columns:1fr;} }
+  .submit-btn{
+    font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:0.04em;
+    padding:15px 30px; background:var(--ink); color:var(--paper-hi); border:none; cursor:pointer;
+    transition:background 0.2s ease; margin-top:8px;
+  }
+  .submit-btn:hover{background:var(--rust);}
+
+  /* OFFICE / STAMP CARD */
+  .stamp{border:1px solid var(--line); padding:36px; position:relative; background:var(--paper-hi); margin-bottom:32px;}
+  .stamp::before{
+    content:'HQ'; position:absolute; top:-13px; left:28px; background:var(--paper);
+    padding:0 10px; font-family:var(--mono); font-size:11px; letter-spacing:0.14em; color:var(--rust);
+  }
+  .stamp p{margin:0 0 6px; font-family:var(--mono); font-size:13px; letter-spacing:0.02em; color:var(--ink); line-height:1.7;}
+  .stamp p.addr-1{font-weight:600;}
+
+  .map-block{
+    width:100%; aspect-ratio:16/9; background:
+      repeating-linear-gradient(45deg, var(--line) 0 2px, transparent 2px 16px), var(--paper-hi);
+    border:1px solid var(--line); position:relative; margin-bottom:32px;
+  }
+  .map-block::after{
+    content:'MAP EMBED'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:12px; letter-spacing:0.14em; color:var(--steel);
+  }
+
+  .quick-links{display:flex; flex-direction:column; gap:14px;}
+  .ql-item{display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:14px; font-size:15px;}
+  .ql-item:last-child{border-bottom:none;}
+  .ql-item .lbl{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--steel);}
+  .ql-item a{text-decoration:none; color:var(--rust); font-weight:500;}
+  .ql-item a:hover{text-decoration:underline;}
+
+  footer{background:var(--ink); border-top:1px solid var(--line-on-ink); padding:28px 0;}
+  .foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+  .foot-row span{font-family:var(--mono); font-size:11px; color:rgba(231,228,218,0.5); letter-spacing:0.04em;}
+
+  /* MOBILE NAV */
+  .hamburger{
+    display:none; background:none; border:none; cursor:pointer; padding:8px;
+    flex-direction:column; justify-content:center; gap:5px; z-index:60; position:relative;
+  }
+  .hamburger span{width:22px; height:2px; background:var(--paper-hi); display:block; transition:transform 0.25s ease, opacity 0.2s ease;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .mobile-menu{
+    position:fixed; top:64px; left:0; right:0; bottom:0; background:var(--ink);
+    z-index:55; display:flex; flex-direction:column; padding:12px 28px 28px;
+    transform:translateY(-8px); opacity:0; pointer-events:none;
+    transition:opacity 0.25s ease, transform 0.25s ease;
+    overflow-y:auto;
+  }
+  .mobile-menu.open{opacity:1; transform:translateY(0); pointer-events:auto;}
+  .mobile-menu a{
+    font-family:var(--display); font-size:28px; font-weight:500; color:var(--paper-hi);
+    text-decoration:none; padding:18px 0; border-bottom:1px solid var(--line-on-ink);
+  }
+  .mobile-menu a.current{color:var(--brass);}
+  .mobile-menu .mm-meta{
+    margin-top:auto; padding-top:24px; font-family:var(--mono); font-size:11px;
+    letter-spacing:0.1em; text-transform:uppercase; color:rgba(231,228,218,0.4);
+  }
+
+  @media (max-width:800px){
+    .hamburger{display:flex;}
+  }
+  @media (min-width:801px){
+    .mobile-menu{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo"><img src="images/Logo_WBSQ.png" alt="WBSQ Holdings" class="logo-img"></a>
+    <nav class="links">
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="sectors.html">Sectors</a>
+      <a href="contact.html" class="current">Contact</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="sectors.html">Sectors</a>
+      <a href="contact.html" class="current">Contact</a>
+    <div class="mm-meta">WBSQ Holdings Pte. Ltd. — Singapore</div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="meta-row">GET IN TOUCH</div>
+    <h1 class="page-title">Where to find us.</h1>
+    <p class="page-sub">For partnership enquiries, media requests, or questions about any brand in the portfolio, reach out below or visit our Singapore office.</p>
+  </div>
+</section>
+
+<section class="contact-main">
+  <div class="wrap cm-grid">
+
+    <div class="form-col">
+      <div class="eyebrow"><span class="ln"></span> SEND A MESSAGE</div>
+      <form onsubmit="return false;">
+        <div class="row-2">
+          <div class="field">
+            <label for="fname">Full name</label>
+            <input id="fname" type="text" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@company.com" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="reason">This enquiry is about</label>
+          <select id="reason">
+            <option>Partnership / business enquiry</option>
+            <option>Media / press</option>
+            <option>Careers</option>
+            <option>A specific brand</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="msg">Message</label>
+          <textarea id="msg" placeholder="Tell us a bit about what you're reaching out for..."></textarea>
+        </div>
+        <button class="submit-btn" type="submit">Send message</button>
+      </form>
+    </div>
+
+    <div class="info-col">
+      <div class="eyebrow"><span class="ln"></span> OFFICE</div>
+      <div class="stamp">
+        <p class="addr-1">WBSQ HOLDINGS PTE. LTD.</p>
+        <p>32 Hongkong Street</p>
+        <p>Singapore 059671</p>
+        <p>UEN 202338361R</p>
+      </div>
+
+      <div class="map-block"></div>
+
+      <div class="quick-links">
+        <div class="ql-item"><span class="lbl">General enquiries</span><a href="mailto:hello@wbsq.com">hello@wbsq.com</a></div>
+        <div class="ql-item"><span class="lbl">Media &amp; press</span><a href="mailto:press@wbsq.com">press@wbsq.com</a></div>
+        <div class="ql-item"><span class="lbl">Careers</span><a href="#">View open roles →</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© 2026 WBSQ HOLDINGS PTE. LTD.</span>
+    <span>UEN 202338361R — SINGAPORE</span>
+  </div>
+</footer>
+
+
+<script>
+  (function(){
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    if(!hamburger || !mobileMenu) return;
+    function closeMenu(){
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    }
+    function toggleMenu(){
+      var isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', toggleMenu);
+    mobileMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenu(); });
+  })();
+</script>
+</body>
+</html>

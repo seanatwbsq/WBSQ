@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WBSQ Holdings — Portfolio Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#000000; --paper:#E7E4DA; --paper-hi:#F3F1E9;
+    --brass:#A9814A; --rust:#A2422A; --steel:#5C7480;
+    --line: rgba(16,31,43,0.14); --line-on-ink: rgba(231,228,218,0.16);
+    --display:'Fraunces',serif; --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--brass); outline-offset:3px;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  header.nav{position:sticky; top:0; z-index:50; background:var(--ink); border-bottom:1px solid var(--line-on-ink);}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px;}
+  .logo{font-family:var(--mono); color:var(--paper-hi); letter-spacing:0.14em; font-size:14px; font-weight:600; text-decoration:none; display:flex; align-items:center; gap:8px;}
+  .logo-img{height:28px; width:auto; display:block;}
+
+  .logo .dot{width:6px; height:6px; background:var(--rust); display:inline-block; border-radius:1px;}
+  nav.links{display:flex; gap:36px;}
+  nav.links a{color:rgba(231,228,218,0.72); text-decoration:none; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; font-weight:500; position:relative; padding-bottom:4px;}
+  nav.links a.current{color:var(--paper-hi);}
+  nav.links a::after{content:''; position:absolute; left:0; bottom:0; height:1px; width:0; background:var(--brass); transition:width 0.25s ease;}
+  nav.links a:hover::after{width:100%;}
+  @media (max-width:800px){ nav.links{display:none;} }
+
+  .page-hero{background:var(--ink); color:var(--paper-hi); padding:80px 0 48px;}
+  .meta-row{font-family:var(--mono); font-size:12px; letter-spacing:0.12em; color:var(--brass); text-transform:uppercase; margin-bottom:20px;}
+  h1.page-title{font-family:var(--display); font-weight:600; font-size:clamp(34px,5vw,56px); margin:0 0 20px; max-width:18ch; letter-spacing:-0.01em;}
+  p.page-sub{font-size:16px; line-height:1.65; max-width:60ch; color:rgba(231,228,218,0.8); margin:0;}
+
+  /* FILTER BAR */
+  .filter-bar{background:var(--ink); border-top:1px solid var(--line-on-ink); padding:18px 0;}
+  .filter-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+  .filter-row span.lbl{font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(231,228,218,0.5); margin-right:6px;}
+  .chip{font-family:var(--mono); font-size:12px; letter-spacing:0.04em; color:rgba(231,228,218,0.8); border:1px solid rgba(231,228,218,0.28); padding:7px 14px; cursor:pointer; background:transparent; transition:all 0.2s ease;}
+  .chip.active{background:var(--brass); color:var(--ink); border-color:var(--brass);}
+  .chip:hover:not(.active){border-color:var(--paper-hi); color:var(--paper-hi);}
+
+  .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--rust); display:flex; align-items:center; gap:10px; margin-bottom:18px;}
+  .eyebrow .ln{width:28px; height:1px; background:var(--rust); display:inline-block;}
+
+  /* PORTFOLIO GRID */
+  .portfolio{padding:80px 0 96px;}
+  .p-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:8px;}
+  @media (max-width:800px){ .p-grid{grid-template-columns:1fr;} }
+  .p-card{background:var(--paper); padding:36px; display:flex; flex-direction:column; gap:16px;}
+  .p-top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px;}
+  .p-code{font-family:var(--mono); font-size:12px; color:var(--brass); font-weight:600;}
+  .p-sector-tag{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--steel); border:1px solid var(--line); padding:4px 10px;}
+  .p-card h3{font-family:var(--display); font-size:24px; font-weight:600; margin:0;}
+  .p-card p{font-size:14.5px; line-height:1.65; color:#33424B; margin:0; flex:1;}
+  .p-link{font-family:var(--mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--rust); text-decoration:none; display:inline-flex; align-items:center; gap:6px;}
+  .p-link:hover{text-decoration:underline;}
+
+  footer{background:var(--ink); border-top:1px solid var(--line-on-ink); padding:28px 0;}
+  .foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+  .foot-row span{font-family:var(--mono); font-size:11px; color:rgba(231,228,218,0.5); letter-spacing:0.04em;}
+
+  /* MOBILE NAV */
+  .hamburger{
+    display:none; background:none; border:none; cursor:pointer; padding:8px;
+    flex-direction:column; justify-content:center; gap:5px; z-index:60; position:relative;
+  }
+  .hamburger span{width:22px; height:2px; background:var(--paper-hi); display:block; transition:transform 0.25s ease, opacity 0.2s ease;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .mobile-menu{
+    position:fixed; top:64px; left:0; right:0; bottom:0; background:var(--ink);
+    z-index:55; display:flex; flex-direction:column; padding:12px 28px 28px;
+    transform:translateY(-8px); opacity:0; pointer-events:none;
+    transition:opacity 0.25s ease, transform 0.25s ease;
+    overflow-y:auto;
+  }
+  .mobile-menu.open{opacity:1; transform:translateY(0); pointer-events:auto;}
+  .mobile-menu a{
+    font-family:var(--display); font-size:28px; font-weight:500; color:var(--paper-hi);
+    text-decoration:none; padding:18px 0; border-bottom:1px solid var(--line-on-ink);
+  }
+  .mobile-menu a.current{color:var(--brass);}
+  .mobile-menu .mm-meta{
+    margin-top:auto; padding-top:24px; font-family:var(--mono); font-size:11px;
+    letter-spacing:0.1em; text-transform:uppercase; color:rgba(231,228,218,0.4);
+  }
+
+  @media (max-width:800px){
+    .hamburger{display:flex;}
+  }
+  @media (min-width:801px){
+    .mobile-menu{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo"><img src="images/Logo_WBSQ.png" alt="WBSQ Holdings" class="logo-img"></a>
+    <nav class="links">
+      <a href="about.html">About</a>
+      <a href="portfolio.html" class="current">Portfolio</a>
+      <a href="sectors.html">Sectors</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="portfolio.html" class="current">Portfolio</a>
+      <a href="sectors.html">Sectors</a>
+      <a href="contact.html">Contact</a>
+    <div class="mm-meta">WBSQ Holdings Pte. Ltd. — Singapore</div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="meta-row">THE FULL MANIFEST</div>
+    <h1 class="page-title">Twelve brands. One portfolio.</h1>
+    <p class="page-sub">Every brand WBSQ owns and operates, in one directory. Filter by sector or browse the full list — each entry links through to its own brand page.</p>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <div class="wrap filter-row">
+    <span class="lbl">Filter</span>
+    <button class="chip active" data-f="all">All (12)</button>
+    <button class="chip" data-f="Home Appliances">Home Appliances (5)</button>
+    <button class="chip" data-f="Robotics">Robotics &amp; Tech (2)</button>
+    <button class="chip" data-f="Construction">Construction (1)</button>
+    <button class="chip" data-f="Logistics">Logistics (1)</button>
+    <button class="chip" data-f="Wellness">Wellness &amp; Education (2)</button>
+    <button class="chip" data-f="Marketing">Marketing Services (1)</button>
+  </div>
+</div>
+
+<section class="portfolio">
+  <div class="wrap">
+    <div class="p-grid" id="grid">
+
+      <div class="p-card" data-sector="Home Appliances">
+        <div class="p-top"><span class="p-code">01</span><span class="p-sector-tag">Home Appliances</span></div>
+        <h3>The Appliances Co.</h3>
+        <p>Household appliances retail and distribution — the founding brand in WBSQ's home appliances line.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+      <div class="p-card" data-sector="Home Appliances">
+        <div class="p-top"><span class="p-code">02</span><span class="p-sector-tag">Home Appliances</span></div>
+        <h3>Hobs and Hoods</h3>
+        <p>Kitchen hobs and range hoods for residential installations, sold and serviced across Singapore.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+      <div class="p-card" data-sector="Home Appliances">
+        <div class="p-top"><span class="p-code">03</span><span class="p-sector-tag">Home Appliances</span></div>
+        <h3>Fridge</h3>
+        <p>Refrigeration units for home and small commercial use, part of WBSQ's core appliances lineup.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+      <div class="p-card" data-sector="Home Appliances">
+        <div class="p-top"><span class="p-code">04</span><span class="p-sector-tag">Home Appliances</span></div>
+        <h3>Wine Fridge</h3>
+        <p>Wine storage and climate-controlled cabinets for home collectors and hospitality clients.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+      <div class="p-card" data-sector="Home Appliances">
+        <div class="p-top"><span class="p-code">05</span><span class="p-sector-tag">Home Appliances</span></div>
+        <h3>DryBox</h3>
+        <p>Dry cabinets and moisture-control storage for cameras, instruments, and household valuables.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+      <div class="p-card" data-sector="Robotics">
+        <div class="p-top"><span class="p-code">06</span><span class="p-sector-tag">Consumer Tech</span></div>
+        <h3>Smart Watch</h3>
+        <p>Wearable technology retail, distributing smart watches and connected fitness devices.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+      <div class="p-card" data-sector="Robotics">
+        <div class="p-top"><span class="p-code">07</span><span class="p-sector-tag">Robotics</span></div>
+        <h3>KeenOn Robotics</h3>
+        <p>Service robotics distribution, bringing automated delivery and cleaning robots to local businesses.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+      <div class="p-card" data-sector="Logistics">
+        <div class="p-top"><span class="p-code">08</span><span class="p-sector-tag">Logistics</span></div>
+        <h3>niveken Logistics</h3>
+        <p>Warehousing and last-mile logistics supporting WBSQ's own brands and external clients.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+      <div class="p-card" data-sector="Construction">
+        <div class="p-top"><span class="p-code">09</span><span class="p-sector-tag">Construction</span></div>
+        <h3>Boh Beh Zao Construction</h3>
+        <p>Renovation and construction services, extending WBSQ's home-focused portfolio into on-the-ground work.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+      <div class="p-card" data-sector="Wellness">
+        <div class="p-top"><span class="p-code">10</span><span class="p-sector-tag">Wellness</span></div>
+        <h3>Better with Age</h3>
+        <p>Wellness products and services for older adults, focused on independence and quality of life.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+      <div class="p-card" data-sector="Wellness">
+        <div class="p-top"><span class="p-code">11</span><span class="p-sector-tag">Education</span></div>
+        <h3>Science Kits</h3>
+        <p>Educational science kits for children, sold direct-to-consumer and through retail partners.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+      <div class="p-card" data-sector="Marketing">
+        <div class="p-top"><span class="p-code">12</span><span class="p-sector-tag">Marketing Services</span></div>
+        <h3>Calm Desk Co.</h3>
+        <p>Digital marketing services, supporting WBSQ's own brands and outside clients with campaign work.</p>
+        <a class="p-link" href="#">Visit brand page →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© 2026 WBSQ HOLDINGS PTE. LTD.</span>
+    <span>UEN 202338361R — SINGAPORE</span>
+  </div>
+</footer>
+
+<script>
+  const chips = document.querySelectorAll('.chip');
+  const cards = document.querySelectorAll('.p-card');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const f = chip.dataset.f;
+      cards.forEach(card => {
+        card.style.display = (f === 'all' || card.dataset.sector === f) ? 'flex' : 'none';
+      });
+    });
+  });
+</script>
+
+
+<script>
+  (function(){
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    if(!hamburger || !mobileMenu) return;
+    function closeMenu(){
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    }
+    function toggleMenu(){
+      var isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', toggleMenu);
+    mobileMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenu(); });
+  })();
+</script>
+</body>
+</html>
