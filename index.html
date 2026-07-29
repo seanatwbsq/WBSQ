@@ -68,17 +68,24 @@
 
   /* HERO */
   .hero{
-    background:var(--ink); color:var(--paper-hi);
+    background: var(--ink) url('images/hero-bg-desktop.png') center center/cover no-repeat;
+    color:var(--paper-hi);
     padding:96px 0 64px;
     position:relative;
     overflow:hidden;
   }
+  @media (max-width:640px){
+    .hero{ background-image: url('images/hero-bg-mobile.png'); }
+  }
   .hero::before{
     content:'';
     position:absolute; inset:0;
-    background-image: repeating-linear-gradient(90deg, var(--line-on-ink) 0 1px, transparent 1px 120px);
-    opacity:0.6; pointer-events:none;
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.75) 100%),
+      repeating-linear-gradient(90deg, var(--line-on-ink) 0 1px, transparent 1px 120px);
+    pointer-events:none;
   }
+  .hero .wrap{ position:relative; z-index:1; }
   .meta-row{
     font-family:var(--mono); font-size:12px; letter-spacing:0.12em;
     color:var(--brass); text-transform:uppercase;
@@ -266,11 +273,6 @@
 
 <section class="hero">
   <div class="wrap">
-    <div class="meta-row">
-      <span>WBSQ HOLDINGS PTE. LTD.</span><span class="sep">/</span>
-      <span>UEN 202338361R</span><span class="sep">/</span>
-      <span>SINGAPORE</span>
-    </div>
     <h1 class="hero-title">One Singapore enterprise, <em>twelve working parts.</em></h1>
     <p class="hero-sub">WBSQ Holdings builds and operates a portfolio of home, technology, and lifestyle brands out of Singapore — sharing sourcing, logistics, and operating discipline so each business scales faster than it could alone.</p>
     <div class="hero-actions">
